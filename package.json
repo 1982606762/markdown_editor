@@ -1,14 +1,12 @@
 {
   "name": "markdown_editor",
-  "version": "1.0.0",
+  "version": "1.1",
   "description": "simple markdown editor",
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "macOS-package": "electron-packager . --platform=darwin --arch=x64 --out=../out --asar --overwrite",
-    "win64-package": "electron-packager . --platform=win32 --arch=x64 --out=../out --asar --overwrite",
-    "package-linux": "electron-packager . --platform=linux -no-sandbox --arch=x64 --download.mirrorOptions.mirror=https://npm.taobao.org/mirrors/electron/ --asar --out=../out --overwrite"
+    "package": "electron-packager . --platform=darwin --arch=x64 --out=../out/markdown-editor --asar --overwrite && electron-packager . --platform=win32  --arch=x64 --out=../out/markdown-editor --asar --overwrite && electron-packager . --platform=linux  --arch=x64 --out=../out/markdown-editor --asar --overwrite"
   },
   "repository": {
     "type": "git",
@@ -21,7 +19,10 @@
   },
   "homepage": "https://github.com/1982606762/markdown_editor#readme",
   "dependencies": {
-    "electron": "^11.1.1",
     "marked": "^1.2.7"
+  },
+  "devDependencies": {
+    "electron": "^11.1.1",
+    "electron-packager": "^15.2.0"
   }
 }
