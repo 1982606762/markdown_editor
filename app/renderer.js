@@ -13,8 +13,10 @@ const saveHtmlButton = document.querySelector('#save-html');
 const showFileButton = document.querySelector('#show-file');
 const openInDefaultButton = document.querySelector('#open-in-default');
 
+const currentwindow = remote.getCurrentWindow();
+
 const renderMarkdownToHtml = (markdown) => {
-  htmlView.innerHTML = marked(markdown, { sanitize: true });
+  htmlView.innerHTML = marked(markdown);
 };
 
 markdownView.addEventListener('keyup', (event) => {
@@ -23,9 +25,12 @@ markdownView.addEventListener('keyup', (event) => {
 });
 
 openFileButton.addEventListener('click', () => {
-  mainProcess.getFileFromUser();
+  mainProcess.getFileFromUser(currentwindow);
 });
 
+newFileButton.addEventListener('click',()=>{
+  mainProcess.createwindow();
+})
 ipcRenderer.on('file-opened', (event, file, content) => {
   markdownView.value = content;
   renderMarkdownToHtml(content);
